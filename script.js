@@ -12,11 +12,19 @@ document.addEventListener("DOMContentLoaded", function () {
   
     let questions = [];
   
-    // Fetch questions from JSON file or API
+    // Fetch questions from API
     async function fetchQuestions() {
       try {
-        const response = await fetch("questions.json"); // Replace with your JSON file or API URL
-        questions = await response.json();
+        const response = await fetch('https://opentdb.com/api.php?amount=35&category=12&difficulty=medium&type=multiple');
+        const data = await response.json();
+  
+        questions = data.results.map((question, index) => ({
+          question: question.question,
+          options: shuffleOptions([...question.incorrect_answers, question.correct_answer]),
+          answer: question.correct_answer,
+          index: index
+        }));
+  
         showQuestion(currentQuestionIndex);
       } catch (error) {
         console.error("Error fetching questions:", error);
@@ -32,11 +40,20 @@ document.addEventListener("DOMContentLoaded", function () {
         option.textContent = question.options[i];
         option.checked = false;
         option.disabled = false;
-        option.parentElement.style.backgroundColor = ""; // Reset background color
+        option.parentElement.style.backgroundColor = "";
         option.parentElement.addEventListener("click", () => highlightAnswerBox(option.parentElement));
       });
   
-      nextButton.style.display = "block"; // Show the Next Question button
+      nextButton.style.display = "block";
+    }
+  
+    // Shuffle options to randomize order
+    function shuffleOptions(options) {
+      for (let i = options.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [options[i], options[j]] = [options[j], options[i]];
+      }
+      return options;
     }
   
     // Highlight selected answer box
@@ -53,7 +70,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const selectedOption = document.querySelector('input[name="answer"]:checked');
       if (!selectedOption) return;
   
-      const selectedAnswer = parseInt(selectedOption.id);
+      const selectedAnswer = selectedOption.parentElement.textContent;
       const correctAnswer = questions[currentQuestionIndex].answer;
   
       if (selectedAnswer === correctAnswer) {
