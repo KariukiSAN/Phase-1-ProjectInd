@@ -1,14 +1,19 @@
 # Phase-1-ProjectInd
 
-# Web Quiz App
-
+## Project Name
+Lights Out and Away we go.
+## Description
 A simple web-based quiz application designed to test your knowledge on various topics. 
 
 This project aims to familiarize users with Phase 1 front-end development concepts.
 
 The Web Quiz App is a basic front-end project created to introduce beginners to Phase 1 front-end development. 
 
-It provides an interactive quiz where users can answer multiple-choice questions on different subjects.
+It provides an interactive quiz where users can answer multiple-choice questions on different topics.
+
+## AUthor Name
+<NAME>: A.N.Kariuki
+
 
 ## Features
 
@@ -63,6 +68,17 @@ JavaScript ES6+
 Node Package Manager (NPM)
 Git Version Control System
 Visual Studio Code Editor
+
+## Contact
+<NAME>: A.N.Kariuki
+<Email>:annette.kariuki@student.moringaschool.com
+<Github>: https://github.com/KariukiSAN
+
+## License Information
+MIT License Copyright(c)2021
+Permission is hereby granted, free of charge, to any person obtaining a copyofthis softwareand associated documentation files(the "Software"),to dealing the Software without restriction, includingwithout limitation the rights. 
+
+
 
 
 
